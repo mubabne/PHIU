@@ -9,7 +9,6 @@ app.get('/weather', async (req, res) =>
     try {
         const city = req.query.city || 'London';
 
-        const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`);
         
         const weatherData = response.data;
         const temperature = weatherData.main.temp - 273.15;
