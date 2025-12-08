@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 class ApiService {
   // YOUR COMPUTER'S IP ADDRESS: 172.16.156.194
   // Use this for physical Android/iOS device
-  static const String baseUrl = 'http://172.16.156.194:3000/api';
+  static const String baseUrl = 'http://10.85.29.106:57216/api';
 
   // Alternative URLs (comment/uncomment as needed):
   // For Android Emulator: 'http://10.0.2.2:3000/api'
