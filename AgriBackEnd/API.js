@@ -2,13 +2,19 @@ const express = require('express');
 const axios = require('axios'); 
 const app = express();
 const port = 5000; 
-
+const apiKey = 'fe5084ecc5add1f8a9efc7c3d7072511';
+// ai key token
+//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
+const ai = require('axios');
+const ai_port = 'Https://openai.com/api/';
+const ai_apiKEY = 'sk-proj-ob0nheypc3xce3kccfxruueqb64nrvrqh_rewj6lxd-k_4vrepcl0xz9oaslmmjkz-zrjauaust3blbkfjqltnyvad_6ackj5drloxklvjdrjqh38unu7ttvbhzoahkxk4p3vapa_fysuea1rxu_t0k0dtqask-proj-1k4MYuaohqK_ElobVVlNsIjiKnYHScSJfs-zHfEYTAdy6faHXco_Kig5fMrmHJNv23YRO1WVwXT3BlbkFJwk3INpMLId4elIEv4wvR3eUWJHRyXFk020u08xyfrD3BBcHn8Qqnz5wDF7JmVSNj-936iT-4cA';
 
 app.get('/weather', async (req, res) => 
 {
     try {
         const city = req.query.city || 'London';
 
+        const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`);
         
         const weatherData = response.data;
         const temperature = weatherData.main.temp - 273.15;
