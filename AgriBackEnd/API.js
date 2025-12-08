@@ -4,6 +4,10 @@ const app = express();
 const port = 5000; 
 const apiKey = 'fe5084ecc5add1f8a9efc7c3d7072511';
 
+const ai = require('axios');
+const ai_port = 'Https://openai.com/api/';
+const ai_apiKEY = 'sk-proj-ob0nheypc3xce3kccfxruueqb64nrvrqh_rewj6lxd-k_4vrepcl0xz9oaslmmjkz-zrjauaust3blbkfjqltnyvad_6ackj5drloxklvjdrjqh38unu7ttvbhzoahkxk4p3vapa_fysuea1rxu_t0k0dtqa/';
+
 app.get('/weather', async (req, res) => {
     try {
         const city = req.query.city || 'London';
