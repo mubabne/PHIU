@@ -2,7 +2,6 @@ const express = require('express');
 const axios = require('axios'); 
 const app = express();
 const port = 5000; 
-const apiKey = 'fe5084ecc5add1f8a9efc7c3d7072511';
 
 
 app.get('/weather', async (req, res) => 
