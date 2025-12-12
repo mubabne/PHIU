@@ -1,24 +1,17 @@
-const sql = require('mssql');
+// src/config/db.js
+const postgres = require("postgres");
 
-const config = {
-    user: 'DESKTOP-8K20357\\Dell G15', 
-    password: '', 
-    server: 'localhost\\SQLEXPRESS',
-    database: 'AgriDB', 
-    options: {
-        encrypt: true, 
-        trustServerCertificate: true 
-    }
-};
+const connectionString = process.env.DATABASE_URL;
 
-async function connectToDatabase() {
-    try {
-        await sql.connect(config);
-        console.log('Connected to SQL Server');
-    } catch (err) {
-        console.error('Error connecting to SQL Server:', err);
-    }
+if (!connectionString) {
+  throw new Error("DATABASE_URL is missing in .env");
 }
 
-connectToDatabase();
+const sql = postgres(connectionString, {
+  ssl: "require",
+  max: 10,
+  idle_timeout: 20,
+  connect_timeout: 30,
+});
 
+module.exports = sql;
