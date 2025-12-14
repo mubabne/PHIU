@@ -44,3 +44,6 @@ app.listen(port, async () => {
     console.error("DB connection failed ❌:", e.message);
   }
 });
+
+/// postman bnu anda
+//bga anda

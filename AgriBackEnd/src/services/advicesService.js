@@ -157,14 +157,14 @@ function getRuleBasedRecommendation(data) {
 async function getAIRecommendation(data) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   
-  if (!apiKey || apiKey === 'your_anthropic_api_key_here') {
+  if (!apiKey || apiKey === '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') {
     return null; // Fall back to rule-based
   }
 
   try {
     const { crop, sensorData = {}, weather, size, location } = data;
 
-    const prompt = `You are an agricultural expert AI. Analyze this farm data and provide recommendations.
+    const prompt = `You are an agricultural expert AI. Analyze this farm data and provide recommendations in mongolian.
 
 Field Information:
 - Location: ${location}

@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 class ApiService {
   // YOUR COMPUTER'S IP ADDRESS: 172.16.156.194
   // Use this for physical Android/iOS device
-  static const String baseUrl = 'http://10.85.29.106:57216/api';
+  static const String baseUrl = 'http://192.168.0.117:57216/api';
 
   // Alternative URLs (comment/uncomment as needed):
   // For Android Emulator: 'http://10.0.2.2:3000/api'
@@ -233,4 +233,53 @@ class ApiService {
       return false;
     }
   }
+
+  Future<bool> register({
+    required String username,
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final response = await http.post(
+        Uri.parse('$baseUrl/auth/register'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          "username": username,
+          "email": email,
+          "password": password,
+        }),
+      );
+
+      print('Server health check: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      return response.statusCode == 201;
+    } catch (e) {
+      print('Server health check failed: $e');
+      return false;
+    }
+  }
+
+  Future<bool> login({
+    required String emailOrPhone,
+    required String password,
+  }) async {
+    try {
+      final response = await http.post(
+        Uri.parse('$baseUrl/auth/login'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({"emailOrPhone": emailOrPhone, "password": password}),
+      );
+
+      print('Login Response: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      return response.statusCode == 200;
+    } catch (e) {
+      print('Login failed: $e');
+      return false;
+    }
+  }
 }
+// ene suuliin functioniig duplicate hiide anda hha
+//duplicate gej yugsn ug bile adna ahha
+// zugeer copy past hiigeed door ni tavichih
+// oh yeah2

@@ -1,3 +1,4 @@
+import 'package:agriapp/controllers/AuthController.dart';
 import 'package:flutter/material.dart';
 import '../widget/app_scaffold.dart';
 import 'dashboard.dart';
@@ -7,6 +8,7 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authController = Authcontroller();
     return AppScaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff020617),
@@ -52,14 +54,31 @@ class RegisterScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                 ),
               ),
-              onPressed: () {
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const DashboardScreen(),
-                  ),
-                  (_) => false,
+              onPressed: () async {
+                final bool registered = await authController.register(
+                  username: "testuser3",
+                  email: "testuser3@gmail.com",
+                  password: "password123",
                 );
+                print('Registration success: $registered');
+
+                if (registered) {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const DashboardScreen(),
+                    ),
+                    (route) => false,
+                  );
+                } else {
+                  final snackBar = SnackBar(
+                    content: const Text(
+                      'Бүртгэл амжилтгүй боллоо. Дахин оролдоно уу.',
+                    ),
+                    backgroundColor: Colors.redAccent,
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                }
               },
               child: const Text(
                 "Бүртгэл үүсгэж нэвтрэх",
